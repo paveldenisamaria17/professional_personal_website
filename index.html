@@ -51,7 +51,7 @@
 
   .mono{ font-family:'IBM Plex Mono', monospace; }
 
-  /* ---------- layout ---------- */
+  /*layout*/
   .layout{
     display:grid;
     grid-template-columns: 300px 1fr;
@@ -127,7 +127,7 @@
   #about p{ font-size:1.02rem; color:var(--ink-soft); max-width:64ch; }
   #about p + p{ margin-top:14px; }
 
-  /* ---------- ledger rows (education / experience) ---------- */
+  /*(education / experience)*/
   .row{
     display:grid;
     grid-template-columns: 130px 1fr;
@@ -153,7 +153,7 @@
     color:var(--ink-soft);
   }
 
-  /* ---------- projects ---------- */
+  /*projects*/
   .project{
     padding:22px 0;
     border-bottom:1px solid var(--line);
@@ -177,7 +177,7 @@
     flex-wrap:wrap;
   }
 
-  /* ---------- featured project (bachelor's thesis) ---------- */
+  /*featured project (bachelor's thesis)*/
   .project.featured{
     border:1px solid var(--line);
     border-left:3px solid var(--accent);
@@ -222,7 +222,7 @@
     color:var(--ink-soft);
   }
 
-  /* ---------- skills ---------- */
+  /*skills*/
   .skill-group + .skill-group{ margin-top:26px; }
   .skill-group h3{
     font-size:0.82rem;
@@ -251,7 +251,7 @@
     gap:10px;
   }
 
-  /* ---------- mobile ---------- */
+  /*mobile*/
   @media (max-width: 860px){
     .layout{ grid-template-columns:1fr; }
     .sidebar{ border-right:none; border-bottom:1px solid var(--line); }
