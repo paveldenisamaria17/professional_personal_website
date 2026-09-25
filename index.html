@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Denisa Pavel — Economic Informatics Graduate</title>
+<meta name="description" content="Portfolio of Denisa Pavel, Economic Informatics graduate — databases, automation, and web development.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg: #f5f3ee;
+    --bg-side: #efece4;
+    --ink: #1c1b18;
+    --ink-soft: #55524a;
+    --line: #d8d3c5;
+    --accent: #2b5d53;
+    --accent-soft: #dfe8e4;
+    --gold: #a9812f;
+    --max: 880px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', -apple-system, sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{ color:var(--accent); text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+
+  h1,h2,h3{
+    font-family:'Source Serif 4', Georgia, serif;
+    font-weight:600;
+    line-height:1.15;
+    margin:0;
+    color:var(--ink);
+  }
+
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+
+  /* ---------- layout ---------- */
+  .layout{
+    display:grid;
+    grid-template-columns: 300px 1fr;
+    max-width:1180px;
+    margin:0 auto;
+  }
+
+  .sidebar{
+    border-right:1px solid var(--line);
+    background:var(--bg-side);
+  }
+  .sidebar-inner{
+    position:sticky;
+    top:0;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    padding:48px 36px;
+  }
+
+  .name{ font-size:1.7rem; }
+  .role{
+    margin-top:6px;
+    color:var(--accent);
+    font-size:1rem;
+    font-weight:500;
+  }
+  .tagline{
+    margin-top:20px;
+    font-size:0.94rem;
+    color:var(--ink-soft);
+    max-width:34ch;
+  }
+
+  nav{ margin-top:44px; }
+  nav ul{ list-style:none; margin:0; padding:0; }
+  nav li + li{ margin-top:10px; }
+  nav a{
+    color:var(--ink);
+    font-size:0.92rem;
+    border-bottom:1px solid transparent;
+  }
+  nav a:hover{ color:var(--accent); text-decoration:none; border-bottom-color:var(--accent); }
+
+  .sidebar-bottom{ margin-top:auto; padding-top:36px; }
+  .links{ display:flex; flex-direction:column; gap:8px; }
+  .links a{
+    font-size:0.9rem;
+    color:var(--ink);
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .links a:hover{ color:var(--accent); }
+  .links svg{ flex:none; }
+
+  .location{
+    margin-top:20px;
+    font-size:0.8rem;
+    color:var(--ink-soft);
+  }
+
+  main{ padding: 64px 56px 40px; max-width: var(--max); }
+
+  section{ margin-bottom:72px; scroll-margin-top:32px; }
+  section h2{
+    font-size:1.4rem;
+    padding-bottom:14px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:28px;
+  }
+
+  #about p{ font-size:1.02rem; color:var(--ink-soft); max-width:64ch; }
+  #about p + p{ margin-top:14px; }
+
+  /* ---------- ledger rows (education / experience) ---------- */
+  .row{
+    display:grid;
+    grid-template-columns: 130px 1fr;
+    gap:20px;
+    padding:18px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .row:first-of-type{ border-top:1px solid var(--line); }
+  .row .when{
+    font-size:0.82rem;
+    color:var(--gold);
+    padding-top:2px;
+  }
+  .row h3{ font-size:1.02rem; font-weight:600; }
+  .row .where{
+    margin-top:2px;
+    font-size:0.92rem;
+    color:var(--ink-soft);
+  }
+  .row .note{
+    margin-top:8px;
+    font-size:0.9rem;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- projects ---------- */
+  .project{
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .project:first-of-type{ border-top:1px solid var(--line); }
+  .project-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .project h3{ font-size:1.05rem; }
+  .project a.repo{
+    font-size:0.82rem;
+    white-space:nowrap;
+  }
+  .project-links{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+
+  /* ---------- featured project (bachelor's thesis) ---------- */
+  .project.featured{
+    border:1px solid var(--line);
+    border-left:3px solid var(--accent);
+    background:var(--bg-side);
+    padding:28px 28px 26px;
+    margin-bottom:36px;
+  }
+  .project.featured .kicker{
+    font-size:0.78rem;
+    color:var(--accent);
+    margin-bottom:6px;
+  }
+  .project.featured h3{ font-size:1.3rem; }
+  .project.featured p{ max-width:66ch; }
+  .project.featured ul{
+    margin:16px 0 0;
+    padding-left:18px;
+    color:var(--ink-soft);
+    font-size:0.92rem;
+    max-width:62ch;
+  }
+  .project.featured li + li{ margin-top:6px; }
+  .project.featured .stack{ margin-top:16px; }
+  .project.featured .stack span{ border-color:var(--accent); color:var(--accent); }
+
+  .project p{
+    margin:8px 0 0;
+    font-size:0.92rem;
+    color:var(--ink-soft);
+    max-width:60ch;
+  }
+  .stack{
+    margin-top:12px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .stack span{
+    font-size:0.75rem;
+    padding:3px 9px;
+    border:1px solid var(--line);
+    color:var(--ink-soft);
+  }
+
+  /* ---------- skills ---------- */
+  .skill-group + .skill-group{ margin-top:26px; }
+  .skill-group h3{
+    font-size:0.82rem;
+    font-weight:500;
+    color:var(--ink-soft);
+    text-transform:none;
+    margin-bottom:12px;
+  }
+  .tags{ display:flex; flex-wrap:wrap; gap:8px; }
+  .tags span{
+    font-size:0.82rem;
+    padding:5px 11px;
+    background:var(--accent-soft);
+    color:var(--accent);
+    border:1px solid transparent;
+  }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding-top:24px;
+    font-size:0.82rem;
+    color:var(--ink-soft);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  /* ---------- mobile ---------- */
+  @media (max-width: 860px){
+    .layout{ grid-template-columns:1fr; }
+    .sidebar{ border-right:none; border-bottom:1px solid var(--line); }
+    .sidebar-inner{ position:static; height:auto; padding:40px 24px; }
+    nav{ margin-top:28px; }
+    nav ul{ display:flex; flex-wrap:wrap; gap:16px; }
+    .sidebar-bottom{ margin-top:28px; padding-top:0; }
+    main{ padding:48px 24px; }
+    .row{ grid-template-columns:1fr; gap:6px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+      <div>
+        <h1 class="name">Denisa Pavel</h1>
+        <p class="role">Economic Informatics Graduate</p>
+        <p class="tagline">Databases, automation and web projects, built from a business-and-tech background.</p>
+      </div>
+
+      <nav aria-label="Section navigation">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="links">
+          <a href="https://github.com/paveldenisamaria17" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+            github.com/paveldenisamaria17
+          </a>
+          <a href="https://www.linkedin.com/in/denisa-maria-pavel-01879926b/" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M3.5 5.5A1.75 1.75 0 1 0 3.5 2a1.75 1.75 0 0 0 0 3.5ZM1.75 6.75h3.5V16h-3.5V6.75Zm5.75 0h3.35v1.27h.05c.47-.85 1.6-1.75 3.3-1.75 3.53 0 4.18 2.24 4.18 5.16V16h-3.5v-4.02c0-.96-.02-2.2-1.36-2.2-1.36 0-1.57 1.03-1.57 2.13V16h-3.45V6.75Z"/></svg>
+            linkedin.com/in/denisa-maria-pavel
+          </a>
+        </div>
+        <p class="location mono">Bucharest, Romania</p>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+
+    <section id="about">
+      <h2>About</h2>
+      <p>I'm a detail-oriented graduate in Economic Informatics from the Bucharest University of Economic Studies (ASE), with a technical foundation that spans databases, statistical analysis, and web development.</p>
+      <p>I like turning data and business problems into working systems — from automating processes with UiPath and Power BI, to building small tools in Python, C# and Java. Highly motivated to listen, learn, and grow while providing real value to a team.</p>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+
+      <div class="row">
+        <div class="when mono">2022 – 2026</div>
+        <div>
+          <h3>Bachelor's Degree in Economic Informatics</h3>
+          <p class="where">Bucharest University of Economic Studies (ASE)</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="when mono">2018 – 2022</div>
+        <div>
+          <h3>High School Diploma in Commerce</h3>
+          <p class="where">Școala Superioară Comercială "Nicolae Kretzulescu", Bucharest</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+
+      <div class="row">
+        <div class="when mono">Apr – May 2024</div>
+        <div>
+          <h3>Audit Intern</h3>
+          <p class="where">KPMG</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="when mono">2017 – 2019</div>
+        <div>
+          <h3>Volunteer</h3>
+          <p class="where">Proedus</p>
+          <p class="note">Took part in charity events as a volunteer.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+
+      <div class="project featured">
+        <p class="kicker mono">Bachelor's thesis project</p>
+        <div class="project-head">
+          <h3>MindMap</h3>
+          <a class="repo" href="https://github.com/paveldenisamaria17/MindMap" target="_blank" rel="noopener">View repo →</a>
+        </div>
+        <p>A brainstorming platform where a user types in a few ideas and gets back a graph of related new ideas, rendered like a constellation growing out of the original words. The goal is to let people see their thinking expanded visually and explore it from different angles — whether they just want to keep track of ideas, compare them against each other, or push a train of thought as far as it can go.</p>
+        <ul>
+          <li>A set of tools to work with the generated graph: comparing ideas, generating new ones, and re-styling the layout until it fits.</li>
+          <li>Each word shows its meaning and why it's linked to its neighbors, so the graph stays explainable, not just decorative.</li>
+          <li>Graphs are saved and organized by creation date, so past sessions can be revisited and analyzed later.</li>
+          <li>Runs on two servers: a Node.js server handles authentication and the database, while a Python server generates related words and links using the WordNet lexical database and Wu–Palmer similarity scoring.</li>
+          <li>Frontend built with plain HTML and CSS.</li>
+        </ul>
+        <div class="stack"><span>Node.js</span><span>Python</span><span>NLP / WordNet</span><span>HTML</span><span>CSS</span><span>Authentication</span></div>
+      </div>
+
+      <div class="project">
+        <div class="project-head">
+          <h3>BPG Site</h3>
+          <div class="project-links">
+            <a class="repo" href="https://paveldenisamaria17.github.io/Website-BPG/" target="_blank" rel="noopener">Live site →</a>
+            <a class="repo" href="https://github.com/paveldenisamaria17/Website-BPG" target="_blank" rel="noopener">View repo →</a>
+          </div>
+        </div>
+        <p>A business website for Building Protection Group, presenting the company's contact details and activities.</p>
+        <div class="stack"><span>React</span><span>Node.js</span><span>HTML</span><span>CSS</span></div>
+      </div>
+
+      <div class="project">
+        <div class="project-head">
+          <h3>Sleep Quality &amp; Lifestyle Analysis</h3>
+          <a class="repo" href="https://github.com/paveldenisamaria17/dsad-project" target="_blank" rel="noopener">View repo →</a>
+        </div>
+        <p>A data analysis project investigating the relationship between lifestyle factors and sleep quality, looking for patterns and how the chosen variables interact with each other.</p>
+        <div class="stack"><span>Data analysis</span><span>Statistics</span></div>
+      </div>
+
+      <div class="project">
+        <div class="project-head">
+          <h3>Animal Shelter Database</h3>
+          <a class="repo" href="https://github.com/paveldenisamaria17/Data-base-project" target="_blank" rel="noopener">View repo →</a>
+        </div>
+        <p>A relational database designed for an animal shelter, covering intake, care, and adoption records.</p>
+        <div class="stack"><span>SQL</span><span>Database design</span></div>
+      </div>
+
+      <div class="project">
+        <div class="project-head">
+          <h3>Data Analysis with Power BI &amp; UiPath</h3>
+          <a class="repo" href="https://github.com/paveldenisamaria17/PowerBi-and-UIPath-project" target="_blank" rel="noopener">View repo →</a>
+        </div>
+        <p>Combines process automation and data visualization to analyze a database end to end.</p>
+        <div class="stack"><span>UiPath</span><span>Power BI</span></div>
+      </div>
+
+      <div class="project">
+        <div class="project-head">
+          <h3>Auction Manager</h3>
+          <a class="repo" href="https://github.com/paveldenisamaria17/windows-forms-project" target="_blank" rel="noopener">View repo →</a>
+        </div>
+        <p>A desktop form application for managing auctions, built with Windows Forms.</p>
+        <div class="stack"><span>C#</span><span>Windows Forms</span></div>
+      </div>
+
+      <div class="project">
+        <div class="project-head">
+          <h3>Linux Bash Adventure</h3>
+          <a class="repo" href="https://github.com/paveldenisamaria17/linux-bash-shell-project" target="_blank" rel="noopener">View repo →</a>
+        </div>
+        <p>A small choice-driven game built from scratch as a Bash shell script.</p>
+        <div class="stack"><span>Bash</span><span>Linux</span></div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+
+      <div class="skill-group">
+        <h3>Technical</h3>
+        <div class="tags">
+          <span>SQL</span><span>Python</span><span>C#</span><span>C</span><span>C++</span><span>Java</span>
+          <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Linux</span><span>Networking</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3>Data &amp; automation</h3>
+        <div class="tags">
+          <span>Power BI</span><span>UiPath</span><span>R / Statistics</span><span>Database management</span><span>Microsoft Office</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3>Business</h3>
+        <div class="tags">
+          <span>Accounting</span><span>Statistics</span><span>Commerce</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3>Languages</h3>
+        <div class="tags">
+          <span>Romanian — Native</span><span>English — Advanced (Cambridge B2)</span>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>© 2026 Denisa Pavel</span>
+      <span>Built with plain HTML &amp; CSS</span>
+    </footer>
+
+  </main>
+
+</div>
+
+</body>
+</html>
